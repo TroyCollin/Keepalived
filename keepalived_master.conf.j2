@@ -1,0 +1,10 @@
+vrrp_instance VI_1 {
+    state MASTER;
+    interface {{ keepalived_interface | default('eth0') }};
+    virtual_router_id {{ keepalived_router_id | default(51) }};
+    priority 100;
+
+    virtual_ipaddress {
+        {{ keepalived_virtual_ip }}
+    }
+}
