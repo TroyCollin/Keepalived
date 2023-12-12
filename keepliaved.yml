@@ -1,6 +1,6 @@
 ---
 - name: Install and Configure Keepalived
-  hosts: your_servers
+  hosts: all
   become: true
 
   tasks:
