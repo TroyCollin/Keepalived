@@ -1,7 +1,7 @@
 ---
 - name: Install and Configure Keepalived
   hosts: your_servers
-  become: true  # Run tasks with sudo
+  become: true
 
   tasks:
     - name: Update package cache
@@ -14,8 +14,8 @@
         name: keepalived
         state: present
 
-    - name: Configure Keepalived
+    - name: Copy Keepalived configuration
       template:
-        src: keepalived.conf.j2
-        dest: /etc/keepalived/keepalived.conf
+        src: "keepalived_{{ keepalived_state | lower }}.conf.j2"
+        dest: "/etc/keepalived/keepalived.conf"
       notify: restart keepalived
