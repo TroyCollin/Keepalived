@@ -24,7 +24,11 @@
       notify: restart keepalived  # Trigger the handler
 
   handlers:
-    - name: restart keepalived
+    - name: enable and start keepalived
+      ansible.builtin.systemd:
+        name: keepalived
+        enabled: yes
+        masked: no
       service:
         name: keepalived
         state: restarted
