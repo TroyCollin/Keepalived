@@ -3,6 +3,9 @@
   hosts: all
   become: true
 
+  vars:
+    keepalived_state: MASTER  # Default to MASTER, change as needed
+
   tasks:
     - name: Update package cache
       apt:
@@ -18,4 +21,10 @@
       template:
         src: "keepalived_{{ keepalived_state | lower }}.conf.j2"
         dest: "/etc/keepalived/keepalived.conf"
-      notify: restart keepalived
+      notify: restart keepalived  # Trigger the handler
+
+  handlers:
+    - name: restart keepalived
+      service:
+        name: keepalived
+        state: restarted
