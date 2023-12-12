@@ -3,3 +3,4 @@ master-node ansible_host=192.168.1.101
 
 [backups]
 backup-node ansible_host=192.168.1.102
+backup-node ansible_host=192.168.1.103
