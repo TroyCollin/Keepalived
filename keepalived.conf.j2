@@ -8,17 +8,3 @@ vrrp_instance VI_1 {
         {{ keepalived_virtual_ip }}
     }
 }
-
-virtual_server {{ keepalived_virtual_ip }} {{ keepalived_virtual_port | default(80) }} {
-    delay_loop 6
-    lb_algo rr
-    lb_kind DR
-
-    real_server {{ keepalived_master_ip }} {{ keepalived_master_port | default(80) }} {
-        weight 1
-    }
-
-    real_server {{ keepalived_backup_ip }} {{ keepalived_backup_port | default(80) }} {
-        weight 1
-    }
-}
