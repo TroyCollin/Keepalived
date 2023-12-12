@@ -1,6 +1,6 @@
 vrrp_instance VI_1 {
     state BACKUP;
-    interface {{ keepalived_interface | default('eth0') }};
+    interface {{ keepalived_interface | default('ens160') }};
     virtual_router_id {{ keepalived_router_id | default(51) }};
     priority 50;  # Adjust the priority as needed for the backup node
 
